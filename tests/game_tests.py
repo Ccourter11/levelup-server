@@ -62,46 +62,46 @@ class GameTests(APITestCase):
         self.assertEqual(json_response['skill_level'], data['skillLevel'])
         self.assertEqual(json_response['number_of_players'], data['numberOfPlayers'])
 
-    # def test_get_game(self):
+    def test_get_game(self):
         
 
-    #     response = self.client.get(f'/games/{self.game.id}')
+        response = self.client.get(f'/games/{self.game.id}')
 
-    #     json_response = json.loads(response.content)
+        json_response = json.loads(response.content)
 
-    #     self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
 
-    #     self.assertEqual(json_response['title'], self.game.title)
-    #     self.assertEqual(json_response['maker'], self.game.maker)
-    #     self.assertEqual(json_response['skill_level'], self.game.skill_level)
-    #     self.assertEqual(json_response['number_of_players'], self.game.number_of_players)
+        self.assertEqual(json_response['title'], self.game.title)
+        self.assertEqual(json_response['maker'], self.game.maker)
+        self.assertEqual(json_response['skill_level'], self.game.skill_level)
+        self.assertEqual(json_response['number_of_players'], self.game.number_of_players)
 
-    # def test_change_game(self):
-    #     data = {
-    #         "gameTypeId": 1,
-    #         "skillLevel": 2,
-    #         "title": "Sorry",
-    #         "maker": "Hasbro",
-    #         "numberOfPlayers": 4
-    #     }
+    def test_change_game(self):
+        data = {
+            "gameTypeId": 1,
+            "skillLevel": 2,
+            "title": "Sorry",
+            "maker": "Hasbro",
+            "numberOfPlayers": 4
+        }
 
-    #     response = self.client.put(f'/games/{self.game.id}', data, format='json')
-    #     self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
+        response = self.client.put(f'/games/{self.game.id}', data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
 
-    #     response = self.client.get(f'/games/{self.game.id}')
-    #     json_response = json.loads(response.content)
-    #     self.assertEqual(response.status_code, status.HTTP_200_OK)
+        response = self.client.get(f'/games/{self.game.id}')
+        json_response = json.loads(response.content)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
 
-    #     self.assertEqual(json_response['title'], data['title'])
-    #     self.assertEqual(json_response['maker'], data['maker'])
-    #     self.assertEqual(json_response['skill_level'], data['skillLevel'])
-    #     self.assertEqual(json_response['number_of_players'], data['numberOfPlayers'])
+        self.assertEqual(json_response['title'], data['title'])
+        self.assertEqual(json_response['maker'], data['maker'])
+        self.assertEqual(json_response['skill_level'], data['skillLevel'])
+        self.assertEqual(json_response['number_of_players'], data['numberOfPlayers'])
 
-    # def test_delete_game(self):
+    def test_delete_game(self):
 
-    #     self.client.credentials(HTTP_AUTHORIZATION='Token ' + self.token)
-    #     response = self.client.delete(f'/games/{self.game.id}')
-    #     self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
+        self.client.credentials(HTTP_AUTHORIZATION='Token ' + self.token)
+        response = self.client.delete(f'/games/{self.game.id}')
+        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
 
-    #     response = self.client.get(f'/games/{self.game.id}')
-    #     self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
+        response = self.client.get(f'/games/{self.game.id}')
+        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
